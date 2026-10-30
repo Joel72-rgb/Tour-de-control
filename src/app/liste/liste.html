@@ -1,0 +1,49 @@
+<h2>Liste des serveurs</h2>
+
+<div class="liste-serveurs">
+  @for (serveur of serveurs(); track serveur.identifiant) {
+    <div class="carte-serveur">
+      <h3>{{ serveur.nom }}</h3>
+
+      <p><strong>Région :</strong> {{ serveur.region }}</p>
+
+      <p>
+        <strong>État :</strong>
+        <span
+          [class.en-ligne]="serveur.enligne"
+          [class.en-panne]="!serveur.enligne">
+          {{ serveur.enligne ? 'En ligne' : 'En panne' }}
+        </span>
+      </p>
+
+      <p><strong>Charge CPU :</strong> {{ serveur.chargeProcesseur }} %</p>
+
+      <div class="barre-charge">
+        <div
+          class="progression"
+          [style.width.%]="serveur.chargeProcesseur">
+        </div>
+      </div>
+
+      @if (serveur.enligne) {
+        <button (click)="provoquerPanne(serveur.identifiant)">
+          Simuler une panne
+        </button>
+      } @else {
+        <button (click)="redemarrerServeur(serveur.identifiant)">
+          Redémarrer
+        </button>
+      }
+
+      <button (click)="modifierCharge(serveur.identifiant, 50)">
+        Fixer CPU à 50 %
+      </button>
+
+      <button (click)="supprimerServeur(serveur.identifiant)">
+        Supprimer
+      </button>
+    </div>
+  } @empty {
+    <p>Aucun serveur enregistré.</p>
+  }
+</div>

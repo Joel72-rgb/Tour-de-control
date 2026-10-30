@@ -1,0 +1,26 @@
+<h2>Centre des alertes</h2>
+<div class="liste-alertes">
+  @for (alerte of alertes(); track alerte.identifiant) {
+    <article class="carte-alerte"
+      [class.alerte-faible]="alerte.gravite === 'faible'"
+      [class.alerte-moyenne]="alerte.gravite === 'moyenne'"
+      [class.alerte-critique]="alerte.gravite === 'critique'">
+       <div>
+        <h3>{{ alerte.message }}</h3>
+        <p><strong>Serveur :</strong> {{ alerte.serverId }}</p>
+        <p><strong>Gravité :</strong>
+          <span class="gravite"
+            [class.faible]="alerte.gravite === 'faible'"
+            [class.moyenne]="alerte.gravite === 'moyenne'"
+            [class.critique]="alerte.gravite === 'critique'">
+            {{ alerte.gravite }}
+          </span>
+        </p>
+        <p><strong>Date :</strong> {{ alerte.heure }}</p>
+      </div>
+      <button (click)="acquitterAlerte(alerte.identifiant)">Acquitter</button>
+    </article>
+  } @empty {
+    <p class="aucune-alerte">Aucune alerte à afficher.</p>
+  }
+</div>

@@ -1,0 +1,23 @@
+.liste-alertes { display: flex; flex-direction: column; gap: 12px; }
+.carte-alerte {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px; border: 1px solid #dbe3ec; border-left: 5px solid #64748b;
+  border-radius: 8px; background: #fff;
+}
+.carte-alerte h3 { margin-top: 0; color: #1e293b; }
+.alerte-faible { border-left-color: #15803d; background: #f0fdf4; }
+.alerte-moyenne { border-left-color: #d97706; background: #fffbeb; }
+.alerte-critique { border-left-color: #dc2626; background: #fff7f7; }
+.gravite { font-weight: bold; text-transform: uppercase; }
+.gravite.faible { color: #15803d; }
+.gravite.moyenne { color: #b45309; }
+.gravite.critique { color: #dc2626; }
+.carte-alerte button {
+  padding: 9px 14px; border: none; border-radius: 5px;
+  background: #334155; color: #fff; cursor: pointer;
+}
+.carte-alerte button:hover { background: #0f172a; }
+.aucune-alerte { padding: 16px; color: #64748b; }
+@media (max-width: 600px) {
+  .carte-alerte { align-items: flex-start; flex-direction: column; }
+}
